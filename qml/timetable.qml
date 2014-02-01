@@ -47,10 +47,16 @@ MainView {
         }
     }
 
+    Database {
+        id: db
+    }
+
     Component.onCompleted: {
         // Any init here
         // Push the mainPage as a home page for the app
         stack.push(mainPage)
+        // Load timetable lessons from database
+        db.load()
         // When root component is completed the StateSaver restore it to previous dimensions.
         // If it is too small, set height and width to a proper size.
         if((root.width < minimumWidth) || (root.height < minimumHeight)){

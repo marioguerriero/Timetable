@@ -1,4 +1,7 @@
+# Temporany files
 *~
 qml/*~
 qml/components/*~
+
+# QtCreator generated files
 *.user

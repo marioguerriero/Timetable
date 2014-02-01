@@ -29,7 +29,17 @@ Column {
             height: units.gu(5)
             width: units.gu(10)
 
-            property alias text: label.text
+            property Lesson lesson
+            onLessonChanged: {
+                if(lesson != undefined) {
+                    lesson.weekday = Utils.getWeekDayIndex(root.title)
+                    lesson.hour = Utils.getHourIndex(modelData)
+                                                     print(lesson.weekday)
+                    print(lesson.hour)
+                }
+            }
+
+            color: lesson ? lesson.color : "transparent"
 
             MouseArea {
                 anchors.fill: parent
@@ -38,6 +48,7 @@ Column {
 
             Label {
                 id: label
+                text: lesson ? lesson.name : ""
                 anchors.centerIn: parent
             }
         }
