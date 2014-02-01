@@ -45,6 +45,10 @@ MainView {
         SettingsPage {
             id: settingsPage
         }
+
+        AboutPage {
+            id: aboutPage
+        }
     }
 
     Database {
