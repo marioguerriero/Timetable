@@ -11,7 +11,7 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetable"
+        path: "timetabledb"
 
         property real count: storage.listDocs().length
     }
@@ -51,5 +51,14 @@ Item {
 
     function update(lesson) {
 
+    }
+
+    function getLesson(weekday, hour) {
+        for(var n = 0; n < content.length; n++) {
+            var item = content[n]
+            if(item.weekday == weekday && item.hour == hour)
+                return item
+        }
+        return undefined
     }
 }

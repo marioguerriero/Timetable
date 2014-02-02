@@ -34,8 +34,6 @@ Column {
                 if(lesson != undefined) {
                     lesson.weekday = Utils.getWeekDayIndex(root.title)
                     lesson.hour = Utils.getHourIndex(modelData)
-                                                     print(lesson.weekday)
-                    print(lesson.hour)
                 }
             }
 
@@ -52,6 +50,15 @@ Column {
                 id: label
                 text: lesson ? lesson.name : ""
                 anchors.centerIn: parent
+            }
+
+            Component.onCompleted: {
+                var weekday = Utils.getWeekDayIndex(root.title)
+                var hour = Utils.getHourIndex(modelData)
+                db.load()
+                var lesson = db.getLesson(weekday, hour)
+                if(lesson != undefined)
+                    item.lesson = lesson
             }
         }
     }
