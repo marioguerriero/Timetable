@@ -7,7 +7,7 @@ import "components"
 */
 
 MainView {
-    id: root
+    id: mainView
 
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
@@ -35,6 +35,8 @@ MainView {
     readonly property real minimumWidth: units.gu(50)
     readonly property real minimumHeight: units.gu(75)
 
+    property bool wideAspect: width >= units.gu(100)
+
     PageStack {
         id: stack
 
@@ -57,15 +59,15 @@ MainView {
 
     Component.onCompleted: {
         // Any init here
+        // Load db content
+        db.load()
         // Push the mainPage as a home page for the app
         stack.push(mainPage)
-        // Load timetable lessons from database
-        db.load()
         // When root component is completed the StateSaver restore it to previous dimensions.
         // If it is too small, set height and width to a proper size.
-        if((root.width < minimumWidth) || (root.height < minimumHeight)){
-            root.width = minimumWidth
-            root.height = minimumHeight
+        if((mainView.width < minimumWidth) || (mainView.height < minimumHeight)){
+            mainView.width = minimumWidth
+            mainView.height = minimumHeight
         }
     }
 }

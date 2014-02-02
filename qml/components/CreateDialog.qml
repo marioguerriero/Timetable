@@ -22,9 +22,11 @@ Dialog {
         text: i18n.tr("Create")
         gradient: UbuntuColors.orangeGradient
         onClicked: {
-            caller.lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; Lesson{name:\"" + titleField.text + "\";"
+            var lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; Lesson{name:\"" + titleField.text + "\";"
                                                + "color:\"" + UbuntuColors.orange + "\""
                                                + "}", caller)
+            caller.lesson = lesson
+            db.save(lesson)
             PopupUtils.close(root)
         }
     }
