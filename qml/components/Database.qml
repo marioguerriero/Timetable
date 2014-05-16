@@ -8,6 +8,8 @@ Item {
     id: root
 
     property var content: []
+    // Used to prevent multiple invocations of load method
+    property bool loaded: false
 
     U1db.Database {
         id: storage
@@ -18,6 +20,10 @@ Item {
 
     // Database helper functions
     function load() {
+        if(loaded)
+            return
+        loaded = !loaded
+
         var docList = storage.listDocs()
         // docList has an extra element at its end
         // don't ask me why
@@ -41,8 +47,8 @@ Item {
         qmlString = qmlString.replace("{{color}}", lesson.color)
         qmlString = qmlString.replace("{{weekday}}", lesson.weekday)
         qmlString = qmlString.replace("{{hour}}", lesson.hour)
-        Qt.createQmlObject(qmlString, mainView, "dynamicNewDocument" + storage.count);
         storage.count++
+        Qt.createQmlObject(qmlString, mainView, "dynamicNewDocument" + storage.count);
     }
 
     function del(lesson) {
