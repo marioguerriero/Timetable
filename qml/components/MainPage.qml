@@ -31,6 +31,8 @@ Page {
             id: container
             spacing: units.gu(1.5)
 
+            x: mainView.width > container.width ? (mainView.width - container.width) / 2 : 0
+
             // Hours colum
             Column {
                 spacing: units.gu(1)
