@@ -42,7 +42,8 @@ Column {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), item);
+                    if(lesson == undefined)
+                        PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), item);
                 }
             }
 

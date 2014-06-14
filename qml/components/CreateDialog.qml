@@ -1,6 +1,7 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Popups 1.0
 
 Dialog {
     id: root
@@ -10,6 +11,23 @@ Dialog {
     TextField {
         id: titleField
         placeholderText: i18n.tr("Title")
+    }
+
+    ItemSelector {
+        id: colorSelector
+        expanded: true
+        containerHeight: units.gu(16)
+        model: customModel
+        delegate: OptionSelectorDelegate { text: name; assetColour: color }
+    }
+
+    ListModel {
+        id: customModel
+        ListElement { name: "Yellow";   color: "#ffbb33" }
+        ListElement { name: "Red";      color: "#cc0000" }
+        ListElement { name: "Orange";   color: "#dd4814" }
+        ListElement { name: "Blue";     color: "#0099cc" }
+        ListElement { name: "Violet";   color: "#aa66cc" }
     }
 
     Button {
@@ -22,12 +40,18 @@ Dialog {
         text: i18n.tr("Create")
         gradient: UbuntuColors.orangeGradient
         onClicked: {
+            var color = customModel.get(colorSelector.selectedIndex).color
             var lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; Lesson{name:\"" + titleField.text + "\";"
-                                               + "color:\"" + UbuntuColors.orange + "\""
-                                               + "}", caller)
+                                            + "color:\"" + color + "\""
+                                            + "}", caller)
             caller.lesson = lesson
             db.save(lesson)
             PopupUtils.close(root)
         }
+    }
+
+    // Focus the title entry when shown
+    Component.onCompleted: {
+        titleField.forceActiveFocus()
     }
 }

@@ -59,7 +59,6 @@ Page {
             }
 
             // Other columns
-
             Repeater {
                 model: Utils.getWeekDays()
                 delegate: DayColumn {
