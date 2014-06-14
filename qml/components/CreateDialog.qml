@@ -18,16 +18,19 @@ Dialog {
         expanded: true
         containerHeight: units.gu(16)
         model: customModel
-        delegate: OptionSelectorDelegate { text: name; assetColour: color }
+        delegate: ColorSelectorDelegate { colorName: name; shapeColor: color }
     }
 
     ListModel {
         id: customModel
-        ListElement { name: "Yellow";   color: "#ffbb33" }
-        ListElement { name: "Red";      color: "#cc0000" }
-        ListElement { name: "Orange";   color: "#dd4814" }
-        ListElement { name: "Blue";     color: "#0099cc" }
-        ListElement { name: "Violet";   color: "#aa66cc" }
+        ListElement { name: "Yellow";       color: "#ffbb33" }
+        ListElement { name: "Red";          color: "#cc0000" }
+        ListElement { name: "Orange";       color: "#dd4814" }
+        ListElement { name: "Blue";         color: "#0099cc" }
+        ListElement { name: "Violet";       color: "#aa66cc" }
+        ListElement { name: "Green";        color: "#00ff00" }
+        ListElement { name: "Grey";         color: "#a4a4a4" }
+        ListElement { name: "Light Blue";   color: "#04b4ae" }
     }
 
     Button {
@@ -51,7 +54,5 @@ Dialog {
     }
 
     // Focus the title entry when shown
-    Component.onCompleted: {
-        titleField.forceActiveFocus()
-    }
+    Component.onCompleted: titleField.forceActiveFocus()
 }

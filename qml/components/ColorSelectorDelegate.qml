@@ -60,17 +60,17 @@ Standard {
 
     /*!
       \preliminary
-      ...
+      Color's name
      */
-    property color color
-    onColorChanged: {
-        colorShape.color = color
-        option.icon = colorShape
-    }
-    Toolkit.UbuntuShape {
-        id: colorShape
-        height: units.gu(2)
-        width: height
+    property string colorName: "undefined"
+
+    /*!
+      \preliminary
+      The color to be selected
+     */
+    property color shapeColor
+    onShapeColorChanged: {
+        colorShape.color = shapeColor
     }
 
     /*!
@@ -286,12 +286,12 @@ Standard {
                 duration: Toolkit.UbuntuAnimation.FastDuration
             }
         }, PropertyAnimation {
-                id: optionCollapse
-                target: option
-                properties: "opacity"
-                from : 1.0
-                to: 0.0
-                duration: Toolkit.UbuntuAnimation.SlowDuration
+            id: optionCollapse
+            target: option
+            properties: "opacity"
+            from : 1.0
+            to: 0.0
+            duration: Toolkit.UbuntuAnimation.SlowDuration
         }
     ]
 
@@ -321,23 +321,25 @@ Standard {
                 visible: colourImage
 
                 fragmentShader: fragColourShader
-             }
+            }
         }
 
-        Column {
-            anchors {
-                verticalCenter: parent.verticalCenter
+        Row {
+            spacing: units.gu(1.5)
+            Toolkit.UbuntuShape {
+                id: colorShape
+                color: shapeColor
+                height: units.gu(3)
+                width: height
             }
             Toolkit.Label {
-                text: option.text === "" ? modelData : option.text
-            }
-            Toolkit.Label {
-                text: option.subText
-                visible: option.subText !== "" ? true : false
-                fontSize: "small"
+                text: colorName
+                color: "white"
+                Component.onCompleted: y = y + units.gu(0.2)
             }
         }
     }
+
 
     Image {
         id: image
@@ -370,6 +372,6 @@ Standard {
             height: source.height
 
             fragmentShader: fragColourShader
-         }
+        }
     }
 }
