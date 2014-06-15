@@ -4,8 +4,8 @@ import Ubuntu.Components 0.1
 QtObject {
     property string name
     property var color
-    property real weekday
-    property real hour
+    property var weekday
+    property var hour
 
     // Used when storing lessons into database
     function toJSON() {

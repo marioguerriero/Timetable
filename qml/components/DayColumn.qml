@@ -46,8 +46,9 @@ Column {
                         PopupUtils.open(Qt.resolvedUrl("./LessonSelectDialog.qml"), item);
                 }
                 onPressAndHold: {
-                    if(lesson != undefined)
+                    if(lesson != undefined) {
                         db.del(lesson)
+                    }
                 }
             }
 

@@ -39,6 +39,11 @@ Item {
         }
     }
 
+    function reload() {
+        loaded = false
+        load()
+    }
+
     function save(lesson) {
         var qmlString = "import QtQuick 2.0; import U1db 1.0 as U1db;U1db.Document {id: {{id}};database: storage;docId: '{{docID}}';create: true;defaults: { 'name': '{{name}}', 'color': '{{color}}','weekday': '{{weekday}}', 'hour': '{{hour}}' }}"
         qmlString = qmlString.replace("{{id}}", "lesson" + storage.count)
@@ -54,7 +59,7 @@ Item {
     function del(lesson) {
         var docList = storage.listDocs()
         var id = -1
-        for(var n = 0; n < docList.length - 1; n++) {
+        for(var n = 0; n < docList.length; n++) {
             id = docList[n]
             // Get id's lesson
             var doc = storage.getDoc(id)
@@ -63,8 +68,7 @@ Item {
             obj = obj.replace("{{color}}", doc.color)
             obj = obj.replace("{{weekday}}", doc.weekday)
             obj = obj.replace("{{hour}}", doc.hour)
-            var l = Qt.createQmlObject(obj, mainView);
-
+            var l = Qt.createQmlObject(obj, root);
             if(l.equalsComplete(lesson))
                 break
         }
@@ -86,8 +90,7 @@ Item {
 
     // Return a list with all Lessons without duplicated entries
     function getAll() {
-        loaded = false
-        load()
+        reload()
         var list = []
         for(var n = 0; n < content.length; n++) {
             var item = content[n]
