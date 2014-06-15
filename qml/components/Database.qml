@@ -13,7 +13,7 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetable"
+        path: "timetabledb"
 
         property real count: storage.listDocs().length
     }
@@ -52,7 +52,23 @@ Item {
     }
 
     function del(lesson) {
+        var docList = storage.listDocs()
+        var id = -1
+        for(var n = 0; n < docList.length - 1; n++) {
+            id = docList[n]
+            // Get id's lesson
+            var doc = storage.getDoc(id)
+            var obj = "import QtQuick 2.0; Lesson {name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}} }"
+            obj = obj.replace("{{name}}", doc.name)
+            obj = obj.replace("{{color}}", doc.color)
+            obj = obj.replace("{{weekday}}", doc.weekday)
+            obj = obj.replace("{{hour}}", doc.hour)
+            var l = Qt.createQmlObject(obj, mainView);
 
+            if(l.equalsComplete(lesson))
+                break
+        }
+        if(id != -1) storage.deleteDoc(id)
     }
 
     function update(lesson) {

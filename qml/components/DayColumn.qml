@@ -45,6 +45,10 @@ Column {
                     if(lesson == undefined)
                         PopupUtils.open(Qt.resolvedUrl("./LessonSelectDialog.qml"), item);
                 }
+                onPressAndHold: {
+                    if(lesson != undefined)
+                        db.del(lesson)
+                }
             }
 
             Label {
