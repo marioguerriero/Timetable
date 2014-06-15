@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
+
 import "components"
 
 /*!
@@ -18,6 +19,9 @@ MainView {
     headerColor: "#021332"
     backgroundColor: "#042b4d"
     footerColor: "#064166"
+
+    // Use new toolbar
+    useDeprecatedToolbar: true
 
     /*
      This property enables the application to change orientation

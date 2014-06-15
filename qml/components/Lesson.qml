@@ -16,4 +16,8 @@ QtObject {
             hour: hour
         }
     }
+
+    function equals(lesson) {
+        return (lesson.name == name && lesson.color == color)
+    }
 }

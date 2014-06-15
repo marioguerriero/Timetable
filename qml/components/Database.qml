@@ -13,7 +13,7 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetabledb"
+        path: "timetable"
 
         property real count: storage.listDocs().length
     }
@@ -66,5 +66,26 @@ Item {
                 return item
         }
         return undefined
+    }
+
+    // Return a list with all Lessons without duplicated entries
+    function getAll() {
+        loaded = false
+        load()
+        var list = []
+        for(var n = 0; n < content.length; n++) {
+            var item = content[n]
+            var duplicate = false
+            for(var i = 0; i < list.length; i++) {
+                if(list[i].equals(item)) {
+                    duplicate = true
+                    break
+                }
+            }
+            if(!duplicate) {
+                list.push(item)
+            }
+        }
+        return list
     }
 }

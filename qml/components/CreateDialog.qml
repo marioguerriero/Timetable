@@ -6,7 +6,7 @@ import Ubuntu.Components.Popups 1.0
 Dialog {
     id: root
 
-    title: i18n.tr("Create new lesson")
+    title: i18n.tr("Create New Lesson")
 
     TextField {
         id: titleField
@@ -47,7 +47,6 @@ Dialog {
             var lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; Lesson{name:\"" + titleField.text + "\";"
                                             + "color:\"" + color + "\""
                                             + "}", caller)
-            caller.lesson = lesson
             db.save(lesson)
             PopupUtils.close(root)
         }

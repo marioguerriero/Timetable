@@ -1,5 +1,6 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
 
 import "../../js/Utils.js" as Utils
 
@@ -73,6 +74,13 @@ Page {
     tools: ToolbarItems {
         locked: false
         opened: false
+
+        ToolbarButton {
+            id: addButton
+            text: i18n.tr("New Lesson")
+            iconSource: Utils.getIcon("add")
+            onTriggered: PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), root);
+        }
 
         ToolbarButton {
             id: settingsButton

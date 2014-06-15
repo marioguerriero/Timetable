@@ -43,7 +43,7 @@ Column {
                 anchors.fill: parent
                 onClicked: {
                     if(lesson == undefined)
-                        PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), item);
+                        PopupUtils.open(Qt.resolvedUrl("./LessonSelectDialog.qml"), item);
                 }
             }
 

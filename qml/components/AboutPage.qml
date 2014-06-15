@@ -53,7 +53,7 @@ Page {
             }
 
             Label {
-                text: i18n.tr("<a href=\"mailto:marioguerriero33@gmail.com?subject=Timetable%20support\">mefrio.g@gmail.com</a>")
+                text: i18n.tr("<a href=\"mailto:marioguerriero33@gmail.com?subject=Timetable%20support\">marioguerriero33@gmail.com</a>")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
         }
