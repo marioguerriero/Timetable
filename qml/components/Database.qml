@@ -59,7 +59,7 @@ Item {
     function del(lesson) {
         var docList = storage.listDocs()
         var id = -1
-        for(var n = 0; n < docList.length; n++) {
+        for(var n = 0; n < docList.length - 1; n++) {
             id = docList[n]
             // Get id's lesson
             var doc = storage.getDoc(id)

@@ -29,8 +29,9 @@ Column {
             height: units.gu(5)
             width: units.gu(10)
 
-            property Lesson lesson
+            property var lesson
             onLessonChanged: {
+                console.log("lesson changed")
                 if(lesson != undefined) {
                     lesson.weekday = Utils.getWeekDayIndex(root.title)
                     lesson.hour = Utils.getHourIndex(modelData)
@@ -48,6 +49,7 @@ Column {
                 onPressAndHold: {
                     if(lesson != undefined) {
                         db.del(lesson)
+                        lesson = undefined
                     }
                 }
             }
