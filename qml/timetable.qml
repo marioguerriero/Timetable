@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 
 import "components"
+import "../js/Utils.js" as Utils
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -59,6 +60,14 @@ MainView {
 
     Database {
         id: db
+    }
+
+    Settings {
+        id: settings
+        Component.onCompleted: {
+            // Init settings
+            settings.init()
+        }
     }
 
     Component.onCompleted: {

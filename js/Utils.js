@@ -4,7 +4,7 @@ function getHourModel() {
     var list = []
     for(var n = 0; n<24; n++) {
         var i = n;
-        list.push(n + "-" + (++i == 24 ? 0 : i))
+        list.push(n + ":00" + "-" + (++i == 24 ? 0 : i) + ":00")
     }
     return list
 }

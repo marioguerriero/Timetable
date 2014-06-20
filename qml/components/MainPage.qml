@@ -18,12 +18,10 @@ Page {
             topMargin: units.gu(4)
         }
 
-        width: container.width
-        height: container.height
-
         StateSaver.properties: "contentY, contentX"
 
-        contentHeight: container.height
+        // Using container.height makes it go in loop (???)
+        contentHeight: parent.height
         contentWidth: container.width
 
         interactive: true
@@ -43,17 +41,36 @@ Page {
                     model: {
                         var list = []
                         // Add an empty space at the top
-                        list.push("")
+                        list.push(undefined)
                         list.concat(Utils.getHourModel())
                     }
 
                     delegate: UbuntuShape {
-                        width: units.gu(5)
-                        height: width
+                        width: units.gu(10)
+                        height: units.gu(5)
                         Label {
-                            text: modelData
+                            text: modelData ? modelData : ""
                             font.bold: true
                             anchors.centerIn: parent
+                        }
+                        Component.onCompleted: {
+                            // Check if this column should be shown
+                            // according to settings
+                            var toShow = false
+                            var list = settings.getSetting("hours")
+                            for(var n = 0; n < list.length; n++) {
+                                // Always add the empty shape
+                                if(modelData == undefined) {
+                                    toShow = true
+                                    break
+                                }
+                                toShow = false
+                                if(list[n] == modelData) {
+                                    toShow = true
+                                    break
+                                }
+                            }
+                            visible = toShow
                         }
                     }
                 }
@@ -65,6 +82,20 @@ Page {
                 delegate: DayColumn {
                     clip: true
                     title: modelData
+                    Component.onCompleted: {
+                        // Check if this column should be shown
+                        // according to settings
+                        var toShow = false
+                        var list = settings.getSetting("weekdays")
+                        for(var n = 0; n < list.length; n++) {
+                            toShow = false
+                            if(list[n] == title) {
+                                toShow = true
+                                break
+                            }
+                        }
+                        visible = toShow
+                    }
                 }
             }
         }

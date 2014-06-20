@@ -13,7 +13,7 @@ Column {
 
     UbuntuShape {
         height: units.gu(5)
-        width: units.gu(10)
+        width: units.gu(12)
         Label {
             font.bold: true
             text: title
@@ -27,11 +27,10 @@ Column {
         delegate: UbuntuShape {
             id: item
             height: units.gu(5)
-            width: units.gu(10)
+            width: units.gu(12)
 
             property var lesson
             onLessonChanged: {
-                console.log("lesson changed")
                 if(lesson != undefined) {
                     lesson.weekday = Utils.getWeekDayIndex(root.title)
                     lesson.hour = Utils.getHourIndex(modelData)
@@ -67,6 +66,17 @@ Column {
                 var lesson = db.getLesson(weekday, hour)
                 if(lesson != undefined)
                     item.lesson = lesson
+                // Hide shapes according to settings
+                var toShow = false
+                var list = settings.getSetting("hours")
+                for(var n = 0; n < list.length; n++) {
+                    toShow = false
+                    if(list[n] == modelData) {
+                        toShow = true
+                        break
+                    }
+                }
+                visible = toShow
             }
         }
     }
