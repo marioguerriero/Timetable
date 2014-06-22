@@ -44,6 +44,8 @@ Column {
                 onClicked: {
                     if(lesson == undefined)
                         PopupUtils.open(Qt.resolvedUrl("./LessonSelectDialog.qml"), item);
+                    else
+                        PopupUtils.open(Qt.resolvedUrl("./LessonDialog.qml"), item);
                 }
                 onPressAndHold: {
                     if(lesson != undefined) {
