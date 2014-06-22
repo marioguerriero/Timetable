@@ -11,6 +11,9 @@ Item {
     // Used to prevent multiple invocations of load method
     property bool loaded: false
 
+    property string lessonQmlString: "import QtQuick 2.0; Lesson {name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}}; location: {{location}}; instructor: {{instructor}}; note: {{note}}; }"
+    property string lessonDocumentQmlString: "import QtQuick 2.0; import U1db 1.0 as U1db;U1db.Document {id: {{id}};database: storage;docId: '{{docID}}';create: true;defaults: { 'name': '{{name}}', 'color': '{{color}}','weekday': '{{weekday}}', 'hour': '{{hour}}' }}"
+
     U1db.Database {
         id: storage
         path: "timetabledb"
@@ -29,11 +32,7 @@ Item {
         // don't ask me why
         for(var n = 0; n < docList.length - 1; n++) {
             var doc = storage.getDoc(docList[n])
-            var newObjectString = "import QtQuick 2.0; Lesson {name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}} }"
-            newObjectString = newObjectString.replace("{{name}}", doc.name)
-            newObjectString = newObjectString.replace("{{color}}", doc.color)
-            newObjectString = newObjectString.replace("{{weekday}}", doc.weekday)
-            newObjectString = newObjectString.replace("{{hour}}", doc.hour)
+            var newObjectString = buildLessonFromString(lessonQmlString, doc)
             var newObject = Qt.createQmlObject(newObjectString, mainView);
             content.push(newObject)
         }
@@ -45,13 +44,9 @@ Item {
     }
 
     function save(lesson) {
-        var qmlString = "import QtQuick 2.0; import U1db 1.0 as U1db;U1db.Document {id: {{id}};database: storage;docId: '{{docID}}';create: true;defaults: { 'name': '{{name}}', 'color': '{{color}}','weekday': '{{weekday}}', 'hour': '{{hour}}' }}"
+        var qmlString = buildLessonFromString(lessonDocumentQmlString, lesson)
         qmlString = qmlString.replace("{{id}}", "lesson" + storage.count)
         qmlString = qmlString.replace("{{docID}}", storage.count)
-        qmlString = qmlString.replace("{{name}}", lesson.name)
-        qmlString = qmlString.replace("{{color}}", lesson.color)
-        qmlString = qmlString.replace("{{weekday}}", lesson.weekday)
-        qmlString = qmlString.replace("{{hour}}", lesson.hour)
         storage.count++
         Qt.createQmlObject(qmlString, mainView, "dynamicNewDocument" + storage.count);
     }
@@ -63,11 +58,7 @@ Item {
             id = docList[n]
             // Get id's lesson
             var doc = storage.getDoc(id)
-            var obj = "import QtQuick 2.0; Lesson {name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}} }"
-            obj = obj.replace("{{name}}", doc.name)
-            obj = obj.replace("{{color}}", doc.color)
-            obj = obj.replace("{{weekday}}", doc.weekday)
-            obj = obj.replace("{{hour}}", doc.hour)
+            var obj = buildLessonFromString(lessonQmlString, doc)
             var l = Qt.createQmlObject(obj, root);
             if(l.equalsComplete(lesson))
                 break
@@ -86,6 +77,20 @@ Item {
                 return item
         }
         return undefined
+    }
+
+    // Used to build a simple Lesson object from a valid Qml string
+    // it takes data from a generic Qml element containing them (it may
+    // be a U1db.Document or a Lesson as well)
+    function buildLessonFromString(obj, doc) {
+        obj = obj.replace("{{name}}", doc.name)
+        obj = obj.replace("{{color}}", doc.color)
+        obj = obj.replace("{{weekday}}", doc.weekday)
+        obj = obj.replace("{{hour}}", doc.hour)
+        obj = obj.replace("{{location}}", doc.location)
+        obj = obj.replace("{{instructor}}", doc.instructor)
+        obj = obj.replace("{{note}}", doc.note)
+        return obj
     }
 
     // Return a list with all Lessons without duplicated entries

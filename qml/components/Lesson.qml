@@ -6,6 +6,9 @@ QtObject {
     property var color
     property var weekday
     property var hour
+    property var location
+    property var instructor
+    property var note
 
     // Used when storing lessons into database
     function toJSON() {
@@ -13,7 +16,10 @@ QtObject {
             name: name,
             color: color,
             weekday: weekday,
-            hour: hour
+            hour: hour,
+            location: location,
+            instructor: instructor,
+            note: note
         }
     }
 
@@ -24,6 +30,8 @@ QtObject {
     // It compares all lesson's parameters
     function equalsComplete(lesson) {
         return (lesson.name == name && lesson.color == color &&
-                lesson.weekday == weekday && lesson.hour == hour)
+                lesson.weekday == weekday && lesson.hour == hour &&
+                lesson.location == location && lesson.instructor == instructor &&
+                lesson.note == note)
     }
 }
