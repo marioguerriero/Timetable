@@ -2,7 +2,7 @@
 Name=timetable
 Comment=My project description
 Exec=/usr/bin/qmlscene $@ /usr/share/timetable/timetable.qml
-Icon=qmlscene
+Icon=data/icons/Timetable.svg
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true

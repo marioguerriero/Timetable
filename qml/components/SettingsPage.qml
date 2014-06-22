@@ -1,6 +1,6 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
 
 import "../../js/Utils.js" as Utils
 
@@ -8,6 +8,9 @@ Page {
     id: root
     visible: false
     title: i18n.tr("Settings")
+
+    property var hours: settings.getSetting("hours")
+    property var weekdays: settings.getSetting("weekdays")
 
     Column {
         width: parent.width
@@ -23,8 +26,9 @@ Page {
             model: Utils.getHourModel()
             containerHeight: units.gu(24)
             onDelegateClicked: {
-                var list = []
-                console.log(index)
+                console.log("TODO")
+            }
+            Component.onCompleted: {
             }
         }
 
@@ -37,6 +41,11 @@ Page {
             expanded: false
             model: Utils.getWeekDays()
             containerHeight: units.gu(24)
+            onDelegateClicked: {
+                console.log("TODO")
+            }
+            Component.onCompleted: {
+            }
         }
 
         Standard {
