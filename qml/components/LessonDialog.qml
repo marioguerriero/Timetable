@@ -13,7 +13,7 @@ Dialog {
     property var lesson: caller ? caller.lesson : undefined
 
     Label {
-        text: (lesson == undefined || lesson.location == undefined || lesson.location == "") ? i18n.tr("No Location") : lesson.location
+        text: (lesson === undefined || lesson.location === undefined || lesson.location === "") ? i18n.tr("No Location") : lesson.location
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -27,12 +27,12 @@ Dialog {
     TextField {
         id: locationField
         visible: false
-        text: (lesson === undefined || lesson.location === undefined) ? lesson.location : "" // To avoid runtime warnings
+        text: (lesson === undefined || lesson.location === undefined || lesson.location === "") ? "" : lesson.location // To avoid runtime warnings
         placeholderText: i18n.tr("Location")
     }
 
     Label {
-        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor == "") ? i18n.tr("No Instructor") : lesson.instructor
+        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? i18n.tr("No Instructor") : lesson.instructor
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -46,12 +46,12 @@ Dialog {
     TextField {
         id: instructorField
         visible: false
-        text: lesson ? lesson.instructor : "" // To avoid runtime warnings
+        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? "" : lesson.instructor  // To avoid runtime warnings
         placeholderText: i18n.tr("Instructor")
     }
 
     TextArea {
-        text: lesson ? lesson.note : "" // To avoid runtime warnings
+        text: (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : lesson.note // To avoid runtime warnings
         placeholderText: i18n.tr("Note")
     }
 
