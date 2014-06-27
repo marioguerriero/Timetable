@@ -11,9 +11,10 @@ Dialog {
     text: lesson ? Utils.getWeekDayFromIndex(lesson.weekday) + " " + Utils.getHourFromIndex(lesson.hour) : ""
 
     property var lesson: caller ? caller.lesson : undefined
-onLessonChanged: console.log(lesson)
+
     Label {
-        text: (lesson === undefined || lesson.location === undefined || lesson.location === "") ? i18n.tr("No Location") : lesson.location
+        text: (lesson === undefined || lesson.location === undefined || lesson.location === "" || lesson.location === "undefined") ?
+                  i18n.tr("No Location") : lesson.location
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -27,12 +28,14 @@ onLessonChanged: console.log(lesson)
     TextField {
         id: locationField
         visible: false
-        text: (lesson === undefined || lesson.location === undefined || lesson.location === "") ? "" : lesson.location // To avoid runtime warnings
+        text: (lesson === undefined || lesson.location === undefined || lesson.location === "" || lesson.location === "undefined") ?
+                  "" : lesson.location // To avoid runtime warnings
         placeholderText: i18n.tr("Location")
     }
 
     Label {
-        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? i18n.tr("No Instructor") : lesson.instructor
+        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "" || lesson.instructor === "undefined") ?
+                  i18n.tr("No Instructor") : lesson.instructor
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -46,13 +49,15 @@ onLessonChanged: console.log(lesson)
     TextField {
         id: instructorField
         visible: false
-        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? "" : lesson.instructor  // To avoid runtime warnings
+        text: (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "" || lesson.instructor === "undefined") ?
+                  "" : lesson.instructor  // To avoid runtime warnings
         placeholderText: i18n.tr("Instructor")
     }
 
     TextArea {
         id: noteArea
-        text: (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : lesson.note // To avoid runtime warnings
+        text: (lesson === undefined || lesson.note === undefined || lesson.note === "" || lesson.note === "undefined") ?
+                  "" : lesson.note // To avoid runtime warnings
         placeholderText: i18n.tr("Note")
     }
 
@@ -72,9 +77,9 @@ onLessonChanged: console.log(lesson)
         text: i18n.tr("Close")
         gradient: UbuntuColors.orangeGradient
         onClicked: {
-            lesson.location = (lesson === undefined || lesson.location === undefined || lesson.location === "") ? "" : locationField.text
-            lesson.instructor = (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? "" : instructorField.text
-            lesson.note = (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : noteArea.text
+            lesson.location = locationField.text
+            lesson.instructor = instructorField.text
+            lesson.note = noteArea.text
             db.update(lesson)
             caller.lesson = lesson
             PopupUtils.close(root)

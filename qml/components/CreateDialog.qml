@@ -48,6 +48,7 @@ Dialog {
                                             + "color:\"" + color + "\""
                                             + "}", caller)
             db.save(lesson)
+            db.reload()
             PopupUtils.close(root)
         }
     }
