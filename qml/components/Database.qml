@@ -59,7 +59,6 @@ Item {
             id = docList[n]
             // Get id's lesson
             var doc = storage.getDoc(id)
-            console.log(id)
             var obj = buildLessonFromString(lessonQmlString, doc)
             var l = Qt.createQmlObject(obj, root)
             if(l.equalsComplete(lesson) && id != -1) {
@@ -70,14 +69,25 @@ Item {
     }
 
     function update(lesson) {
-        del(lesson)
-        save(lesson)
+        var docList = storage.listDocs()
+        var id = -1
+        for(var n = 0; n < docList.length; n++) {
+            id = docList[n]
+            // Get id's lesson
+            var doc = storage.getDoc(id)
+            var obj = buildLessonFromString(lessonQmlString, doc)
+            var l = Qt.createQmlObject(obj, root)
+            if(l.equalsComplete(lesson) && id != -1) {
+                var lessonObj = buildLessonFromString(lessonQmlString, lesson)
+                storage.putDoc(lessonObj, id)
+            }
+        }
     }
 
     function getLesson(weekday, hour) {
         for(var n = 0; n < content.length; n++) {
             var item = content[n]
-            if(item.weekday == weekday && item.hour == hour)
+            if(item.weekday === weekday && item.hour === hour)
                 return item
         }
         return undefined

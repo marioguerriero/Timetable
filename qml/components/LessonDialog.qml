@@ -62,6 +62,7 @@ Dialog {
         gradient: UbuntuColors.greyGradient
         onClicked: {
             db.del(lesson)
+            caller.lesson = undefined
             PopupUtils.close(root)
         }
     }
@@ -75,6 +76,7 @@ Dialog {
             lesson.instructor = (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? "" : instructorField.text
             lesson.note = (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : noteArea.text
             db.update(lesson)
+            caller.lesson = lesson
             PopupUtils.close(root)
         }
     }
