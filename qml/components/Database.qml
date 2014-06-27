@@ -16,10 +16,9 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetabledb16"
+        path: "timetabledb17"
 
         property real count: storage.listDocs().length
-        Component.onCompleted: console.log(storage.listDocs().length)
     }
 
     // Database helper functions
@@ -47,7 +46,7 @@ Item {
         qmlString = qmlString.replace("{{id}}", "lesson" + storage.count)
         qmlString = qmlString.replace("{{docID}}", storage.count)
         storage.count++
-        var l = Qt.createQmlObject(qmlString, storage);
+        var l = Qt.createQmlObject(qmlString, storage)
         console.log(lesson.instructor)
     }
 
@@ -69,36 +68,18 @@ Item {
 
     function update(lesson) {
         save(lesson)
-//        var docList = storage.listDocs()
-//        var id = -1
-//        for(var n = 0; n < docList.length; n++) {
-//            id = docList[n]
-//            // Get id's lesson
-//            var doc = storage.getDoc(id)
-//            var obj = buildLessonFromString(lessonQmlString, doc)
-//            var l = Qt.createQmlObject(obj, root)
-//            if(l.equalsComplete(lesson) && id != -1) {
-//                var lessonObj = buildLessonFromString(lessonQmlString, lesson)
-//                storage.putDoc(lessonObj, id)
-//                break
-//            }
-//        }
     }
 
     function getLesson(weekday, hour) {
         var lesson = undefined
         for(var n = 0; n < content.length; n++) {
             var item = content[n]
-//            if(item.weekday === weekday && item.hour === hour)
-//                return item
             if(lesson === undefined && item.weekday === weekday && item.hour === hour) lesson = item
             if(lesson !== undefined && lesson.weekday === weekday && lesson.hour === hour) {
                 lesson.location = item.location
                 lesson.instructor = item.instructor
                 lesson.note = item.note
-                console.log(lesson.location + " and " + lesson.instructor)
             }
-
         }
         return lesson
     }
