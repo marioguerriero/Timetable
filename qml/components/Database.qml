@@ -16,7 +16,7 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetabledb9"
+        path: "timetabledb10"
 
         property real count: storage.listDocs().length
         Component.onCompleted: console.log(storage.listDocs().length)
@@ -29,13 +29,11 @@ Item {
         loaded = !loaded
 
         var docList = storage.listDocs()
-        // docList has an extra element at its end
-        // don't ask me why
         for(var n = 0; n < docList.length; n++) {
             var doc = storage.getDoc(docList[n])
             var newObjectString = buildLessonFromString(lessonQmlString, doc)
             var newObject = Qt.createQmlObject(newObjectString, storage);
-            content.push(newObject)
+            if(newObject.name != "undefined") content.push(newObject)
         }
     }
 

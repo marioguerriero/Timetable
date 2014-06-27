@@ -11,7 +11,7 @@ Dialog {
     text: lesson ? Utils.getWeekDayFromIndex(lesson.weekday) + " " + Utils.getHourFromIndex(lesson.hour) : ""
 
     property var lesson: caller ? caller.lesson : undefined
-
+onLessonChanged: console.log(lesson)
     Label {
         text: (lesson === undefined || lesson.location === undefined || lesson.location === "") ? i18n.tr("No Location") : lesson.location
         MouseArea {
