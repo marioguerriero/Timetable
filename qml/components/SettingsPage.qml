@@ -16,37 +16,46 @@ Page {
         width: parent.width
         height:parent.height
 
-        Header {
-            text: i18n.tr("Hour rows:")
-        }
-
-        ItemSelector {
-            multiSelection: true
-            expanded: false
-            model: Utils.getHourModel()
-            containerHeight: units.gu(24)
-            onDelegateClicked: {
-                console.log("TODO")
-            }
-            Component.onCompleted: {
+        Standard {
+            text: i18n.tr("Notify upcoming lessons")
+            control: Switch {
+                checked: settings.getSetting("notify")
+                onCheckedChanged: settings.setSetting("notify", checked)
             }
         }
 
-        Header {
-            text: i18n.tr("Weekdays columns:")
-        }
+// Uncomment me when it will availble a dynamic multi selection feature for ItemSelector
+//        Header {
+//            text: i18n.tr("Hour rows:")
+//        }
 
-        ItemSelector {
-            multiSelection: true
-            expanded: false
-            model: Utils.getWeekDays()
-            containerHeight: units.gu(24)
-            onDelegateClicked: {
-                console.log("TODO")
-            }
-            Component.onCompleted: {
-            }
-        }
+//        ItemSelector {
+//            multiSelection: true
+//            expanded: false
+//            model: Utils.getHourModel()
+//            containerHeight: units.gu(24)
+//            onDelegateClicked: {
+//                console.log("TODO")
+//            }
+//            Component.onCompleted: {
+//            }
+//        }
+
+//        Header {
+//            text: i18n.tr("Weekdays columns:")
+//        }
+
+//        ItemSelector {
+//            multiSelection: true
+//            expanded: false
+//            model: Utils.getWeekDays()
+//            containerHeight: units.gu(24)
+//            onDelegateClicked: {
+//                console.log("TODO")
+//            }
+//            Component.onCompleted: {
+//            }
+//        }
 
         Standard {
             text: i18n.tr("About")

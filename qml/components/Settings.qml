@@ -23,6 +23,7 @@ Item {
         defaults: {
             hours: []
             weekdays: []
+            notify: false
         }
     }
 
@@ -37,6 +38,10 @@ Item {
         if(weekdays == undefined) {
             var weekdays = Utils.getWeekDays()
             setSetting("weekdays", weekdays.slice(0, 6))
+        }
+        var notify = getSetting("weekdays")
+        if(notify == undefined) {
+            notify = false
         }
     }
 

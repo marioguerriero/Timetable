@@ -15,7 +15,7 @@ MainView {
     objectName: "mainView"
 
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "com.ubuntu.developer.mefrio.lesson-timetable"
+    applicationName: "com.ubuntu.developer.mefrio-g.timetable"
 
     headerColor: "#021332"
     backgroundColor: "#042b4d"
