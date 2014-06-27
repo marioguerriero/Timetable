@@ -51,6 +51,7 @@ Dialog {
     }
 
     TextArea {
+        id: noteArea
         text: (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : lesson.note // To avoid runtime warnings
         placeholderText: i18n.tr("Note")
     }
@@ -60,6 +61,7 @@ Dialog {
         text: i18n.tr("Delete")
         gradient: UbuntuColors.greyGradient
         onClicked: {
+            db.del(lesson)
             PopupUtils.close(root)
         }
     }
@@ -69,6 +71,10 @@ Dialog {
         text: i18n.tr("Close")
         gradient: UbuntuColors.orangeGradient
         onClicked: {
+            lesson.location = (lesson === undefined || lesson.location === undefined || lesson.location === "") ? "" : locationField.text
+            lesson.instructor = (lesson === undefined || lesson.instructor === undefined || lesson.instructor === "") ? "" : instructorField.text
+            lesson.note = (lesson === undefined || lesson.note === undefined || lesson.note === "") ? "" : noteArea.text
+            db.update(lesson)
             PopupUtils.close(root)
         }
     }

@@ -1,5 +1,7 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
+
+import "../../js/Utils.js" as Utils
 
 Page {
     title: i18n.tr("About")
@@ -16,7 +18,7 @@ Page {
 
         UbuntuShape {
             image: Image {
-                // source:
+                source: Utils.getLocalIcon("Timetable.svg")
             }
 
             width: 128

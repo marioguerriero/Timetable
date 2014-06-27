@@ -16,9 +16,10 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetabledb"
+        path: "timetabledb9"
 
         property real count: storage.listDocs().length
+        Component.onCompleted: console.log(storage.listDocs().length)
     }
 
     // Database helper functions
@@ -30,10 +31,10 @@ Item {
         var docList = storage.listDocs()
         // docList has an extra element at its end
         // don't ask me why
-        for(var n = 0; n < docList.length - 1; n++) {
+        for(var n = 0; n < docList.length; n++) {
             var doc = storage.getDoc(docList[n])
             var newObjectString = buildLessonFromString(lessonQmlString, doc)
-            var newObject = Qt.createQmlObject(newObjectString, mainView);
+            var newObject = Qt.createQmlObject(newObjectString, storage);
             content.push(newObject)
         }
     }
@@ -48,26 +49,29 @@ Item {
         qmlString = qmlString.replace("{{id}}", "lesson" + storage.count)
         qmlString = qmlString.replace("{{docID}}", storage.count)
         storage.count++
-        Qt.createQmlObject(qmlString, mainView, "dynamicNewDocument" + storage.count);
+        Qt.createQmlObject(qmlString, storage);
     }
 
     function del(lesson) {
         var docList = storage.listDocs()
         var id = -1
-        for(var n = 0; n < docList.length - 1; n++) {
+        for(var n = 0; n < docList.length; n++) {
             id = docList[n]
             // Get id's lesson
             var doc = storage.getDoc(id)
+            console.log(id)
             var obj = buildLessonFromString(lessonQmlString, doc)
-            var l = Qt.createQmlObject(obj, root);
-            if(l.equalsComplete(lesson))
-                break
+            var l = Qt.createQmlObject(obj, root)
+            if(l.equalsComplete(lesson) && id != -1) {
+                storage.deleteDoc(id)
+                storage.count--
+            }
         }
-        if(id != -1) storage.deleteDoc(id)
     }
 
     function update(lesson) {
-
+        del(lesson)
+        save(lesson)
     }
 
     function getLesson(weekday, hour) {

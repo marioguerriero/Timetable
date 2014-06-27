@@ -54,3 +54,7 @@ function getWeekDayFromIndex(index) {
 function getIcon(icon) {
     return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + icon + ".svg"
 }
+
+function getLocalIcon(icon) {
+    return "../../data/icons/" + icon
+}

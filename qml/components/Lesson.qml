@@ -30,8 +30,6 @@ QtObject {
     // It compares all lesson's parameters
     function equalsComplete(lesson) {
         return (lesson.name == name && lesson.color == color &&
-                lesson.weekday == weekday && lesson.hour == hour &&
-                lesson.location == location && lesson.instructor == instructor &&
-                lesson.note == note)
+                lesson.weekday == weekday && lesson.hour == hour)
     }
 }
