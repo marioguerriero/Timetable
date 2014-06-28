@@ -68,7 +68,6 @@ Column {
                 var lesson = db.getLesson(weekday, hour)
                 if(lesson != undefined) {
                     item.lesson = lesson
-                    console.log(lesson.location)
                 }
                 // Hide shapes according to settings
                 var toShow = false

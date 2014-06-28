@@ -1,6 +1,6 @@
 {
     "architecture": "all",
-    "description": "description of timetable",
+    "description": "Organize your school life!",
     "framework": "ubuntu-sdk-13.10",
     "hooks": {
         "timetable": {
@@ -8,8 +8,8 @@
             "desktop": "timetable.desktop"
         }
     },
-    "maintainer": "Mario Guerriero <mefrio.g@gmail.com>",
-    "name": "com.ubuntu.developer.mefrio-g.timetable",
-    "title": "timetable",
+    "maintainer": "Mario Guerriero <marioguerriero33@gmail.com>",
+    "name": "com.ubuntu.developer.mefrio.timetable",
+    "title": "Timetable",
     "version": "0.1"
 }

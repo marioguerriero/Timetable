@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import U1db 1.0 as U1db
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 // Lessons are stored into timetableDatabase document
 // which is synced trhough devices with the U1 service
@@ -11,8 +11,8 @@ Item {
     // Used to prevent multiple invocations of load method
     property bool loaded: false
 
-    property string lessonQmlString: "import QtQuick 2.0; Lesson {name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}}; location: \"{{location}}\"; instructor: \"{{instructor}}\"; note: \"{{note}}\"; }"
-    property string lessonDocumentQmlString: "import QtQuick 2.0; import U1db 1.0 as U1db;U1db.Document {id: {{id}};database: storage;docId: '{{docID}}';create: true;defaults: { 'name': '{{name}}', 'color': '{{color}}','weekday': '{{weekday}}', 'hour': '{{hour}}', 'location': '{{location}}', 'instructor': '{{instructor}}', 'note': '{{note}}' }}"
+    property string lessonQmlString: "import QtQuick 2.0; Lesson { name: \"{{name}}\"; color: \"{{color}}\"; weekday: {{weekday}}; hour: {{hour}}; location: \"{{location}}\"; instructor: \"{{instructor}}\"; note: \"{{note}}\"; }"
+    property string lessonDocumentQmlString: "import QtQuick 2.0; import U1db 1.0 as U1db; U1db.Document {id: {{id}};database: storage;docId: '{{docID}}';create: true;defaults: { 'name': '{{name}}', 'color': '{{color}}','weekday': '{{weekday}}', 'hour': '{{hour}}', 'location': '{{location}}', 'instructor': '{{instructor}}', 'note': '{{note}}' }}"
 
     U1db.Database {
         id: storage
@@ -32,7 +32,10 @@ Item {
             var doc = storage.getDoc(docList[n])
             var newObjectString = buildLessonFromString(lessonQmlString, doc)
             var newObject = Qt.createQmlObject(newObjectString, storage);
-            if(newObject.name != "undefined") content.push(newObject)
+            if(newObject.name != "undefined") {
+                content.push(newObject)
+                newObject.configureAlarm()
+            }
         }
     }
 
@@ -47,6 +50,7 @@ Item {
         qmlString = qmlString.replace("{{docID}}", storage.count)
         storage.count++
         var l = Qt.createQmlObject(qmlString, storage)
+        lesson.configureAlarm()
     }
 
     function del(lesson) {
