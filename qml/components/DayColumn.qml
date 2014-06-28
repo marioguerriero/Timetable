@@ -66,8 +66,10 @@ Column {
                 var hour = Utils.getHourIndex(modelData)
                 db.load()
                 var lesson = db.getLesson(weekday, hour)
-                if(lesson != undefined)
+                if(lesson != undefined) {
                     item.lesson = lesson
+                    console.log(lesson.location)
+                }
                 // Hide shapes according to settings
                 var toShow = false
                 var list = settings.getSetting("hours")

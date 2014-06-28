@@ -16,7 +16,7 @@ Item {
 
     U1db.Database {
         id: storage
-        path: "timetabledb17"
+        path: "timetabledb18"
 
         property real count: storage.listDocs().length
     }
@@ -47,7 +47,6 @@ Item {
         qmlString = qmlString.replace("{{docID}}", storage.count)
         storage.count++
         var l = Qt.createQmlObject(qmlString, storage)
-        console.log(lesson.instructor)
     }
 
     function del(lesson) {
@@ -75,10 +74,13 @@ Item {
         for(var n = 0; n < content.length; n++) {
             var item = content[n]
             if(lesson === undefined && item.weekday === weekday && item.hour === hour) lesson = item
-            if(lesson !== undefined && lesson.weekday === weekday && lesson.hour === hour) {
-                lesson.location = item.location
-                lesson.instructor = item.instructor
-                lesson.note = item.note
+            if(lesson !== undefined && lesson.weekday === item.weekday && lesson.hour === item.hour) {
+                lesson.location = (item.location !== "" && item.location !== "undefined" && item.location !== undefined)
+                        ? item.location : ""
+                lesson.instructor = (item.instructor !== "" && item.instructor !== "undefined" && item.instructor !== undefined)
+                        ? item.instructor : ""
+                lesson.note = (item.note !== "" && item.note !== "undefined" && item.note !== undefined)
+                        ? item.note : ""
             }
         }
         return lesson
