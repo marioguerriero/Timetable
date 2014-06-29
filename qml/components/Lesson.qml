@@ -44,6 +44,7 @@ QtObject {
     // Invoke this function when the alarm property of this
     // object is meant to be set
     function configureAlarm() {
+        // Set alarm weekday
         switch(weekday) {
             case 0:
                 alarm.daysOfWeek = Alarm.Monday;
@@ -67,6 +68,12 @@ QtObject {
                 alarm.daysOfWeek = Alarm.Sunday;
                 break;
         }
+        // Set alarm hour
+        var date = new Date()
+        date.setHours(hour)
+        alarm.date = date
+        // Enable alarm
         alarm.enabled = settings.getSetting("notify")
+        alarm.save()
     }
 }
