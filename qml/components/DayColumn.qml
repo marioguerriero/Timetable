@@ -53,6 +53,10 @@ Column {
                         lesson = undefined
                     }
                 }
+//                drag {
+//                    target: lesson ? item : undefined
+//                    axis: Drag.XandYAxis
+//                }
             }
 
             Label {

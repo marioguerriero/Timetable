@@ -80,7 +80,7 @@ Page {
             Repeater {
                 model: Utils.getWeekDays()
                 delegate: DayColumn {
-                    clip: true
+                    //clip: true
                     title: modelData
                     Component.onCompleted: {
                         // Check if this column should be shown
@@ -103,21 +103,22 @@ Page {
 
     // Toolbar
     tools: ToolbarItems {
-        locked: false
-        opened: false
-
         ToolbarButton {
-            id: addButton
-            text: i18n.tr("New Lesson")
-            iconSource: Utils.getIcon("add")
-            onTriggered: PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), root);
+            id: settingsButton
+            action: Action {
+                text: i18n.tr("Settings")
+                iconSource: Utils.getIcon("settings")
+                onTriggered: stack.push(settingsPage)
+            }
         }
 
         ToolbarButton {
-            id: settingsButton
-            text: i18n.tr("Settings")
-            iconSource: Utils.getIcon("settings")
-            onTriggered: stack.push(settingsPage)
+            id: addButton
+            action: Action {
+                text: i18n.tr("New Lesson")
+                iconSource: Utils.getIcon("add")
+                onTriggered: PopupUtils.open(Qt.resolvedUrl("./CreateDialog.qml"), root)
+            }
         }
     }
 }
