@@ -17,9 +17,7 @@ MainView {
     // Note! applicationName needs to match the "name" field of the click manifest
     applicationName: "com.ubuntu.developer.mefrio.timetable"
 
-    headerColor: "#021332"
     backgroundColor: "#042b4d"
-    footerColor: "#064166"
 
     // Use new toolbar
     useDeprecatedToolbar: false

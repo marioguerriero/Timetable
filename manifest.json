@@ -1,7 +1,7 @@
 {
     "architecture": "all",
     "description": "Organize your school life!",
-    "framework": "ubuntu-sdk-13.10",
+    "framework": "ubuntu-sdk-14.04-qml-dev1",
     "hooks": {
         "timetable": {
             "apparmor": "timetable.json",
