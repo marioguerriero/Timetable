@@ -6,7 +6,7 @@ import Ubuntu.Components.Popups 1.0
 Dialog {
     id: root
 
-    title: i18n.tr("Create New Lesson")
+    title: i18n.tr("Create Course")
 
     TextField {
         id: titleField

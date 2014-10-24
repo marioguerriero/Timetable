@@ -43,8 +43,24 @@ MainView {
     PageStack {
         id: stack
 
-        MainPage {
-            id: mainPage
+        Tabs {
+            id: tabs
+
+            Tab {
+                id: mainTab
+                title: page.title
+                page: MainPage {
+                    id: mainPage
+                }
+            }
+
+            Tab {
+                id: examTab
+                title: page.title
+                page: ExamPage {
+                    id: examPage
+                }
+            }
         }
 
         SettingsPage {
@@ -73,7 +89,7 @@ MainView {
         // Load db content
         db.load()
         // Push the mainPage as a home page for the app
-        stack.push(mainPage)
+        stack.push(tabs)
         // When root component is completed the StateSaver restore it to previous dimensions.
         // If it is too small, set height and width to a proper size.
         if((mainView.width < minimumWidth) || (mainView.height < minimumHeight)){
