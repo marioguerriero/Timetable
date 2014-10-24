@@ -43,13 +43,13 @@ Column {
                 anchors.fill: parent
                 onClicked: {
                     if(lesson == undefined)
-                        PopupUtils.open(Qt.resolvedUrl("./LessonSelectDialog.qml"), item);
+                        PopupUtils.open(Qt.resolvedUrl("./Dialogs/LessonSelectDialog.qml"), item);
                     else
                         PopupUtils.open(Qt.resolvedUrl("./LessonDialog.qml"), item);
                 }
                 onPressAndHold: {
                     if(lesson != undefined) {
-                        db.del(lesson)
+                        dbLesson.del(lesson)
                         lesson = undefined
                     }
                 }
@@ -68,8 +68,8 @@ Column {
             Component.onCompleted: {
                 var weekday = Utils.getWeekDayIndex(root.title)
                 var hour = Utils.getHourIndex(modelData)
-                db.load()
-                var lesson = db.getLesson(weekday, hour)
+                dbLesson.load()
+                var lesson = dbLesson.getLesson(weekday, hour)
                 if(lesson != undefined) {
                     item.lesson = lesson
                 }

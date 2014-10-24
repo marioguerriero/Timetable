@@ -56,5 +56,5 @@ function getIcon(icon) {
 }
 
 function getLocalIcon(icon) {
-    return "../../data/icons/" + icon
+    return "../../../data/icons/" + icon
 }

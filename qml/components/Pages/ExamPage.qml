@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 
-import "../../js/Utils.js" as Utils
+import "../../../js/Utils.js" as Utils
 
 Page {
     id: root
@@ -24,7 +24,7 @@ Page {
             action: Action {
                 text: i18n.tr("New Exam")
                 iconSource: Utils.getIcon("add")
-                onTriggered: PopupUtils.open(Qt.resolvedUrl("./CreateExamDialog.qml"), root)
+                onTriggered: PopupUtils.open(Qt.resolvedUrl("../Dialogs/CreateExamDialog.qml"), root)
             }
         }
     }

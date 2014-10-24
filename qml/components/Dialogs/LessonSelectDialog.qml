@@ -3,6 +3,8 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 
+import "../"
+
 Dialog {
     id: root
 
@@ -32,13 +34,13 @@ Dialog {
         onClicked: {
             var lesson = customModel.get(lessonSelector.selectedIndex).lesson
             caller.lesson = lesson
-            db.save(lesson)
+            dbLesson.save(lesson)
             PopupUtils.close(root)
         }
     }
 
     Component.onCompleted: {
-        var list = db.getAll()
+        var list = dbLesson.getAll()
         for(var n = 0; n < list.length; n++) {
             var item = list[n]
             customModel.append({ "lesson": item, "name": item.name, "color": item.color })

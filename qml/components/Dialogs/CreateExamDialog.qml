@@ -4,6 +4,8 @@ import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.Pickers 1.0
 
+import "../"
+
 Dialog {
     id: root
 
@@ -86,7 +88,7 @@ Dialog {
 
     Component.onCompleted: {
         // Update Dialog's label
-        var list = list = db.getAll()
+        var list = list = dbLesson.getAll()
         if(list.length > 0) {
             title = i18n.tr("Add New Exam")
             addBtn.visible = true
@@ -113,7 +115,7 @@ Dialog {
         creditsPicker.model = list
         creditsPicker.selectedIndex = 5
         // Courses picker
-        list = db.getAll()
+        list = dbLesson.getAll()
         for(var n = 0; n < list.length; n++) {
             var item = list[n]
             customModel.append({ "lesson": item, "name": item.name, "color": item.color })

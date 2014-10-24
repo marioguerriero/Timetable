@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 
-import "../../js/Utils.js" as Utils
+import "../../../js/Utils.js" as Utils
 
 QtObject {
     property string name

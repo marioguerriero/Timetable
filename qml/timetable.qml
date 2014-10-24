@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 
 import "components"
+import "components/Database"
+import "components/Pages"
 import "../js/Utils.js" as Utils
 
 /*!
@@ -72,8 +74,13 @@ MainView {
         }
     }
 
-    Database {
-        id: db
+    // Databases
+    LessonDatabase {
+        id: dbLesson
+    }
+
+    ExamDatabase {
+        id: dbExam
     }
 
     Settings {
@@ -87,7 +94,7 @@ MainView {
     Component.onCompleted: {
         // Any init here
         // Load db content
-        db.load()
+        dbLesson.load()
         // Push the mainPage as a home page for the app
         stack.push(tabs)
         // When root component is completed the StateSaver restore it to previous dimensions.

@@ -3,6 +3,8 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 
+import "../"
+
 Dialog {
     id: root
 
@@ -44,11 +46,12 @@ Dialog {
         gradient: UbuntuColors.orangeGradient
         onClicked: {
             var color = customModel.get(colorSelector.selectedIndex).color
-            var lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; Lesson{name:\"" + titleField.text + "\";"
+            var lesson = Qt.createQmlObject("import Ubuntu.Components 0.1; import \"../Database\";"
+                                            + "Lesson{name:\"" + titleField.text + "\";"
                                             + "color:\"" + color + "\""
                                             + "}", caller)
-            db.save(lesson)
-            db.reload()
+            dbLesson.save(lesson)
+            dbLesson.reload()
             PopupUtils.close(root)
         }
     }
