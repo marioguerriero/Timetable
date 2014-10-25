@@ -82,6 +82,17 @@ Dialog {
         text: i18n.tr("Add")
         gradient: UbuntuColors.orangeGradient
         onClicked: {
+            var lesson = customModel.get(lessonSelector.selectedIndex).lesson
+            var exam = Qt.createQmlObject("import \"../Database\";"
+                                          + "Exam{vote:" + (votePicker.selectedIndex+1) + ";"
+                                          + "ects:" + (creditsPicker.selectedIndex+1) + ";"
+                                          + "name:\"" + lesson.name + "\";"
+                                          + "color:\"" + lesson.color+ "\";"
+                                          + "date:\"" + "date" + "\";"
+                                          + "}", caller)
+
+            dbExam.save(exam)
+            caller.update()
             PopupUtils.close(root)
         }
     }
