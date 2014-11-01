@@ -50,7 +50,7 @@ Rectangle {
 
     property bool expanded: true
 
-    property string mode: "left" // or "right"
+    property string mode: "top" // or "bottom"
 
     anchors {
         left: parent.left
@@ -64,7 +64,7 @@ Rectangle {
 
         ThinDivider {
             id: divider
-            rotation: mode === "left" ? 90 : -90
+            rotation: mode === "top" ? 180 : -180
 
             width: parent.height
 
@@ -79,8 +79,8 @@ Rectangle {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            right: mode === "left" ? parent.right : undefined
-            left: mode === "right" ? parent.left : undefined
+            right: mode === "top" ? parent.bottom : undefined
+            left: mode === "bottom" ? parent.top : undefined
             rightMargin: -1
         }
     }

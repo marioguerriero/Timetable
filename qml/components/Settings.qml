@@ -3,6 +3,7 @@ import U1db 1.0 as U1db
 import Ubuntu.Components 0.1
 
 import "../../js/Utils.js" as Utils
+import "../../js/SettingsConst.js" as Keys
 
 // Settings are all stored in a Document
 Item {
@@ -24,25 +25,27 @@ Item {
             hours: []
             weekdays: []
             notify: false
+            desiredVote: 110
         }
     }
 
     // Set settings to default if they are not set
     function init() {
-        var hours = getSetting("hours")
-        if(hours == undefined) {
-            var hours = Utils.getHourModel()
-            setSetting("hours", hours.slice(8, 19))
+        var value = getSetting(Keys.HOURS)
+        if(value === undefined) {
+            setSetting(Keys.HOURS, Utils.getHourModel().slice(8, 19))
         }
-        var weekdays = getSetting("weekdays")
-        if(weekdays == undefined) {
+        value = getSetting(Keys.WEEKDAYS)
+        if(value === undefined) {
             var weekdays = Utils.getWeekDays()
-            setSetting("weekdays", weekdays.slice(0, 6))
+            setSetting(Keys.WEEKDAYS, Utils.getWeekDays().slice(0, 6))
         }
-        var notify = getSetting("weekdays")
-        if(notify == undefined) {
-            notify = false
-        }
+        value = getSetting(Keys.NOTIFY)
+        if(value === undefined)
+            setSetting(Keys.NOTIFY, false)
+        value = getSetting(Keys.DESIRED_VOTE)
+        if(value === undefined)
+            setSetting(Keys.DESIRED_VOTE, 110)
     }
 
     function getSetting(name) {

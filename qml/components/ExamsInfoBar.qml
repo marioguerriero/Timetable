@@ -4,7 +4,6 @@ import Ubuntu.Components.ListItems 1.0
 
 Sidebar {
     id: root
-    width: units.gu(35)
     expanded: true
     mode: "left"
 
@@ -23,6 +22,10 @@ Sidebar {
     function append(data) {
         model.push(data)
         listView.model = model
+    }
+
+    function clear() {
+        list.model = []
     }
 
 }

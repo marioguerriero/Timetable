@@ -5,6 +5,7 @@ import Ubuntu.Components.Popups 1.0
 
 import "../../../js/Utils.js" as Utils
 import "../../../js/ExamUtils.js" as ExamUtils
+import "../../../js/SettingsConst.js" as Keys
 
 import "../"
 
@@ -23,11 +24,16 @@ Page {
             ExamsInfoBar {
                 id: sidebar
                 height: parent.height * 0.3
-                Component.onCompleted: {
-                    sidebar.append(ExamUtils.getArithmenticMean())
-                    sidebar.append(ExamUtils.getWeightedAverage())
-                    sidebar.append(ExamUtils.getPointsToDesiredVote())
+
+                function update() {
+                    clear()
+                    var exams = dbExam.getAll()
+                    sidebar.append(ExamUtils.getArithmenticMean(exams))
+                    sidebar.append(ExamUtils.getWeightedAverage(exams))
+                    sidebar.append(ExamUtils.getPointsToDesiredVote(exams, settings.getSetting(Keys.DESIRED_VOTE)))
                 }
+
+                Component.onCompleted: update()
             }
 
             ListView {
@@ -79,6 +85,7 @@ Page {
 
     function update() {
         list.model = dbExam.getAll()
+        sidebar.update()
     }
 
     Component.onCompleted: {
