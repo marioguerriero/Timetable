@@ -12,53 +12,76 @@ Page {
     property var hours: settings.getSetting("hours")
     property var weekdays: settings.getSetting("weekdays")
 
-    Column {
-        width: parent.width
-        height:parent.height
+    Flickable {
+        id: flickable
 
-        Standard {
-            text: i18n.tr("Notify upcoming lessons")
-            control: Switch {
-                checked: settings.getSetting("notify")
-                onCheckedChanged: settings.setSetting("notify", checked)
+        anchors.fill: parent
+
+        contentHeight: container.height + units.gu(10)
+        flickableDirection: Flickable.VerticalFlick
+        interactive: true
+
+        Column {
+            id: container
+            width: root.width
+            height: root.height
+
+            Header {
+                text: i18n.tr("General")
             }
-        }
 
-        Standard {
-            text: i18n.tr("Hour rows")
-        }
-
-        ItemSelector {
-            multiSelection: true
-            expanded: false
-            model: Utils.getHourModel()
-            containerHeight: units.gu(24)
-            onDelegateClicked: {
-                console.log("TODO")
+            Standard {
+                text: i18n.tr("Notify upcoming lessons")
+                control: Switch {
+                    checked: settings.getSetting("notify")
+                    onCheckedChanged: settings.setSetting("notify", checked)
+                }
             }
-            Component.onCompleted: {
-            }
-        }
 
-        Standard {
-            text: i18n.tr("Weekdays columns")
-        }
-
-        ItemSelector {
-            multiSelection: true
-            expanded: false
-            model: Utils.getWeekDays()
-            containerHeight: units.gu(24)
-            onDelegateClicked: {
-                console.log("TODO")
+            Header {
+                text: i18n.tr("Timetable")
             }
-            Component.onCompleted: {
-            }
-        }
 
-        Standard {
-            text: i18n.tr("About")
-            onClicked: stack.push(aboutPage)
+            Standard {
+                text: i18n.tr("Hour rows")
+            }
+
+            ItemSelector {
+                multiSelection: true
+                expanded: false
+                model: Utils.getHourModel()
+                containerHeight: units.gu(24)
+                onDelegateClicked: {
+                    console.log("TODO")
+                }
+                Component.onCompleted: {
+                }
+            }
+
+            Standard {
+                text: i18n.tr("Weekdays columns")
+            }
+
+            ItemSelector {
+                multiSelection: true
+                expanded: false
+                model: Utils.getWeekDays()
+                containerHeight: units.gu(24)
+                onDelegateClicked: {
+                    console.log("TODO")
+                }
+                Component.onCompleted: {
+                }
+            }
+
+            Header {
+                text: i18n.tr("Exams")
+            }
+
+            Standard {
+                text: i18n.tr("About")
+                onClicked: stack.push(aboutPage)
+            }
         }
     }
 }

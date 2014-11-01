@@ -4,6 +4,7 @@ import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 
 import "../../../js/Utils.js" as Utils
+import "../../../js/ExamUtils.js" as ExamUtils
 
 import "../"
 
@@ -11,13 +12,42 @@ Page {
     id: root
     title: i18n.tr("Exams")
 
-    ListView {
-        id: list
+    Row {
         anchors.fill: parent
-        delegate: ExamItemDelegate {
-            exam: modelData
-            text: exam.name + " - " + exam.vote + " - " + exam.ects + " ECTS"
-            color: exam.color
+        spacing: units.gu(2)
+
+        Column {
+            width: wideAspect ? parent.width * 0.3 : parent.width
+            height: parent.height
+
+            ExamsInfoBar {
+                id: sidebar
+                height: parent.height * 0.3
+                Component.onCompleted: {
+                    sidebar.append(ExamUtils.getArithmenticMean())
+                    sidebar.append(ExamUtils.getWeightedAverage())
+                    sidebar.append(ExamUtils.getPointsToDesiredVote())
+                }
+            }
+
+            ListView {
+                id: list
+                height: parent.height * 0.7
+                width: parent.width
+                clip: true
+                delegate: ExamItemDelegate {
+                    exam: modelData
+                    text: exam.name + " - " + exam.vote + " - " + exam.ects + " ECTS"
+                    color: exam.color
+                }
+            }
+        }
+
+        ExamCharts {
+            width: parent.width * 0.7
+            height: parent.height
+            visible: wideAspect
+            anchors.topMargin: units.gu(12)
         }
     }
 

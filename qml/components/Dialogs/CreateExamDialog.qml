@@ -24,6 +24,11 @@ Dialog {
         id: customModel
     }
 
+    DatePicker {
+        id: datePicker
+        visible: false // for now
+    }
+
     Row {
         id: row
         spacing: units.gu(2)
@@ -88,7 +93,7 @@ Dialog {
                                           + "ects:" + (creditsPicker.selectedIndex+1) + ";"
                                           + "name:\"" + lesson.name + "\";"
                                           + "color:\"" + lesson.color+ "\";"
-                                          + "date:\"" + "date" + "\";"
+                                          + "date:\"" + Qt.formatDate(new Date()/*datePicker.date*/) + "\";"
                                           + "}", caller)
 
             dbExam.save(exam)
