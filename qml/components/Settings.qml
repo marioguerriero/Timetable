@@ -46,6 +46,9 @@ Item {
         value = getSetting(Keys.DESIRED_VOTE)
         if(value === undefined)
             setSetting(Keys.DESIRED_VOTE, 110)
+        value = getSetting(Keys.VOTE_PRECISION )
+        if(value === undefined)
+            setSetting(Keys.VOTE_PRECISION , 2)
     }
 
     function getSetting(name) {

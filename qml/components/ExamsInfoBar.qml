@@ -14,7 +14,7 @@ Sidebar {
         delegate: SingleValue {
             text: modelData.name
             selected: false
-            value: modelData.value
+            value: modelData.value.toFixed(2)
         }
     }
 
