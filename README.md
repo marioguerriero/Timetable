@@ -10,11 +10,11 @@ Manage your student's life
  * U1db - qtdeclarative5-u1db1.0
  * Ubuntu Mobile Icons - ubuntu-mobile-icons
 
-To test Timetable app just enter in its main directory and run: 
+To test Timetable app just enter in its main directory and run:
 
     qmlscene qml/timetable.qml
 
-### Features
+### Features ###
 
 ### Contribution ###
 

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=timetable
-Comment=My project description
-Exec=qmlscene $@ qml/timetable.qml
-Icon=data/icons/Timetable.svg
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
