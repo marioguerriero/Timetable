@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-04 09:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: qml/components/Database/Lesson.qml:18
+msgid " is at "
+msgstr ""
+
+#: qml/components/Dialogs/CreateCourseDialog.qml:11
+msgid "Create Course"
+msgstr ""
+
+#: qml/components/Dialogs/CreateCourseDialog.qml:15
+msgid "Title"
+msgstr ""
+
+#: qml/components/Dialogs/CreateCourseDialog.qml:39
+#: qml/components/Dialogs/CreateExamDialog.qml:80
+#: qml/components/Dialogs/LessonSelectDialog.qml:25
+msgid "Cancel"
+msgstr ""
+
+#: qml/components/Dialogs/CreateCourseDialog.qml:45
+msgid "Create"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:12
+msgid "Add Exam"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:39
+msgid "Vote:"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:59
+msgid "ECTS:"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:87
+msgid "Add"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:109
+msgid "Add New Exam"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:114
+#: qml/components/Dialogs/LessonSelectDialog.qml:54
+msgid "No Lessons Found"
+msgstr ""
+
+#: qml/components/Dialogs/CreateExamDialog.qml:115
+#: qml/components/Dialogs/LessonSelectDialog.qml:55
+msgid "You need to add a lesson first"
+msgstr ""
+
+#: qml/components/Dialogs/LessonSelectDialog.qml:32
+msgid "Select"
+msgstr ""
+
+#: qml/components/Dialogs/LessonSelectDialog.qml:50
+msgid "Select Lesson"
+msgstr ""
+
+#: qml/components/Pages/ExamPage.qml:14
+#: qml/components/Pages/SettingsPage.qml:78
+msgid "Exams"
+msgstr ""
+
+#: qml/components/Pages/ExamPage.qml:70 qml/components/Pages/MainPage.qml:110
+#: qml/components/Pages/SettingsPage.qml:12
+msgid "Settings"
+msgstr ""
+
+#: qml/components/Pages/ExamPage.qml:79
+msgid "New Exam"
+msgstr ""
+
+#: qml/components/Pages/MainPage.qml:10
+#: qml/components/Pages/SettingsPage.qml:44
+msgid "Timetable"
+msgstr ""
+
+#: qml/components/Pages/MainPage.qml:119
+msgid "New Lesson"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:32
+msgid "General"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:36
+msgid "Notify upcoming lessons"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:48
+msgid "Hour rows"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:64
+msgid "Weekdays columns"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:83
+#: qml/components/Pages/SettingsPage.qml:104
+msgid "Desired Vote"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:89
+msgid "Others"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:93
+#: qml/components/Pages/AboutPage.qml:7
+msgid "About"
+msgstr ""
+
+#: qml/components/Pages/SettingsPage.qml:111
+msgid "Confirm"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:36
+msgid "Author:          "
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:45
+msgid "Icon:"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:54
+msgid "Contact:"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:58
+#, c-format, qt-format
+msgid ""
+"<a href=\"mailto:marioguerriero33@gmail.com?subject=Timetable%20support"
+"\">marioguerriero33@gmail.com</a>"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:68
+msgid ""
+"<a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_s-"
+"xclick&hosted_button_id=4RPVD3GG3EJ4U\">Donate</a>"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:73
+msgid ""
+"<a href=\"https://github.com/marioguerriero/Timetable/issues/\">Report a "
+"Bug</a>"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:79
+msgid "<a href=\"http://marioguerriero.github.io/Timetable/\">Website</a>"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:85
+#, qt-format
+msgid "Version <b>%1</b>"
+msgstr ""
+
+#: qml/components/Pages/AboutPage.qml:90
+msgid "Copyright (C) 2014 Mario Guerriero"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:17
+msgid "No Location"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:33
+msgid "Location"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:38
+msgid "No Instructor"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:54
+msgid "Instructor"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:61
+msgid "Note"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:66
+msgid "Delete"
+msgstr ""
+
+#: qml/components/LessonDialog.qml:77
+msgid "Close"
+msgstr ""
+
+#: js/ExamUtils.js:16
+msgid "Weighted Average:"
+msgstr ""
+
+#: js/ExamUtils.js:27
+msgid "Arithmetic Mean:"
+msgstr ""
+
+#: js/ExamUtils.js:32
+msgid "Points To Desired Vote:"
+msgstr ""
+
+#: js/Utils.js:32
+msgid "Monday"
+msgstr ""
+
+#: js/Utils.js:32
+msgid "Tuesday"
+msgstr ""
+
+#: js/Utils.js:32
+msgid "Wednesday"
+msgstr ""
+
+#: js/Utils.js:33
+msgid "Thursday"
+msgstr ""
+
+#: js/Utils.js:33
+msgid "Friday"
+msgstr ""
+
+#: js/Utils.js:33
+msgid "Saturday"
+msgstr ""
+
+#: js/Utils.js:34
+msgid "Sunday"
+msgstr ""

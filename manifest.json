@@ -1,17 +1,17 @@
 {
-    "name": "timetable.mefrio",
+    "name": "timetable.mefrio-g",
     "description": "description of timetable",
-    "architecture": "@CLICK_ARCH@",
+    "architecture": "all",
     "title": "timetable",
     "hooks": {
         "timetable": {
-            "apparmor": "timetable/timetable.apparmor",
-            "desktop":  "timetable/timetable.desktop"
+            "apparmor": "timetable.apparmor",
+            "desktop":  "timetable.desktop"
         }
     },
     "version": "0.1",
     "maintainer": "Mario Guerriero <marioguerriero33@gmail.com>",
-    "framework" : "ubuntu-core-15.04-dev1"
+    "framework" : "ubuntu-sdk-15.04"
 }
 
 

@@ -1,7 +1,5 @@
-import QtQuick 2.0
-import Ubuntu.Components 1.1
-
-import Timetable 1.0
+import QtQuick 2.4
+import Ubuntu.Components 1.2
 
 import "components"
 import "components/Database"
@@ -22,9 +20,6 @@ MainView {
     applicationName: "com.ubuntu.developer.mefrio.timetable"
 
     backgroundColor: "#042b4d"
-
-    // Use new toolbar
-    useDeprecatedToolbar: false
 
     /*
      This property enables the application to change orientation
@@ -77,10 +72,6 @@ MainView {
     }
 
     // Databases
-    Database {
-        id: db
-    }
-
     LessonDatabase {
         id: dbLesson
     }

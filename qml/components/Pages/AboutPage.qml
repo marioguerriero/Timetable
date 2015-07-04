@@ -18,7 +18,7 @@ Page {
 
         UbuntuShape {
             image: Image {
-                source: "../../timetable.png"
+                source: "../../../timetable.png"
             }
 
             width: 128
